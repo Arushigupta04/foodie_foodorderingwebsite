@@ -8,7 +8,7 @@ const trackingSchema = new mongoose.Schema({
     },
     action: {
         type: String,
-        enum: ['created', 'updated', 'deleted', 'preparation', 'delivery', 'order', 'out for delivery', 'delivered'],
+        enum: ['created', 'updated', 'deleted', 'received', 'accepted', 'prepared', 'out for delivery', 'delivered'],
         required: true,
     },
     timestamp: {

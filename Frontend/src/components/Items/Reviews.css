@@ -1,8 +1,14 @@
 /* Container for the entire reviews section */
+.gradient-background {
+  background: linear-gradient(to left, #fff3e0, #ffcc80); 
+  /* Light gradient background */
+  display: flex;
+}
 .containerR {
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px;
+
   }
   
   /* Title styling */
@@ -26,6 +32,7 @@
   .gridR {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px; /* Space between cards */
     justify-content: center;
   }

@@ -1,23 +1,33 @@
-// src/components/TrackingPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import './TrackingPage.css';
 
 const API_URL = 'http://localhost:5000'; // Replace with your backend URL
 
 const TrackingPage = () => {
-    const { id } = useParams();
+    const { id } = useParams(); // Order ID from URL parameters
     const [tracking, setTracking] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userRole, setUserRole] = useState(null);
+    const [currentActionIndex, setCurrentActionIndex] = useState(0);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [completedActions, setCompletedActions] = useState({});
 
+    const actions = ['received', 'accepted', 'prepared', 'out-for-delivery', 'delivered'];
+
+    // Fetch tracking data from the backend
     const fetchTracking = async () => {
         try {
-            const response = await axios.get(`${API_URL}/items/${id}/tracking`, {
+            const response = await fetch(`${API_URL}/api/tracking/items/${id}/tracking`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
-            console.log(tracking)
-            setTracking(response.data);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setTracking(data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching tracking data:', error);
@@ -25,98 +35,127 @@ const TrackingPage = () => {
         }
     };
 
+    // Fetch the user's role
     const fetchUserRole = async () => {
         try {
-            const response = await axios.get(`${API_URL}/api/user`, {
+            const response = await fetch(`${API_URL}/api/user`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
             });
-            console.log(response.data.role)
-            setUserRole(response.data.role);
-        } catch (error) {
-            console.error('+Error fetching user role:', error);
-        }
-    };
 
-    const handleLogAction = async (action) => {
-        try {
-            const response = await fetch(`http://localhost:5000/api/tracking/items/${id}/${action}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify({}) // Empty object as body if required
-            });
-    
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-    
-            // Re-fetch the tracking data
+
+            const data = await response.json();
+            setUserRole(data.role);
+        } catch (error) {
+            console.error('Error fetching user role:', error);
+        }
+    };
+
+    // Handle action button click and log the action
+    const handleLogAction = async (action, index) => {
+        if (index !== currentActionIndex) {
+            setErrorMessage(`Please complete "${actions[currentActionIndex]}" first.`);
+            setTimeout(() => setErrorMessage(''), 3000);
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/api/tracking/items/${id}/${action}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: JSON.stringify({}),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // Update the action state for this specific order in localStorage
+            const nextActionIndex = currentActionIndex + 1;
+            setCurrentActionIndex(nextActionIndex);
+
+            // Store the next completed action index for this specific order
+            const updatedActions = { ...completedActions, [id]: nextActionIndex };
+            setCompletedActions(updatedActions);
+            localStorage.setItem('completedActions', JSON.stringify(updatedActions));
+
             fetchTracking();
         } catch (error) {
             console.error('Error logging action:', error);
         }
     };
-    
 
+    // Load initial state from localStorage for this specific order
     useEffect(() => {
+        const storedActions = JSON.parse(localStorage.getItem('completedActions')) || {};
+        const storedActionIndex = storedActions[id] || 0; // Default to 0 if not found for the order
+        setCompletedActions(storedActions);
+        setCurrentActionIndex(storedActionIndex);
+
         fetchTracking();
         fetchUserRole();
     }, [id]);
 
     if (loading) {
-        return <div className="text-center mt-10">Loading...</div>;
+        return <div className="loading-message">Loading...</div>;
     }
 
+    // Sort the tracking actions to show the latest actions first
+    const sortedTracking = [...tracking].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Tracking Information</h1>
-            {userRole === 'Admin' && (
-                <div className="mb-4">
-                    <button
-                        className="bg-red-500 text-black px-4 py-2 rounded mr-2"
-                        onClick={() => handleLogAction('preparation')}
-                    >
-                        Log Preparation
-                    </button>
-                    <button
-                        className="bg-red-500 text-black px-4 py-2 rounded mr-2"
-                        onClick={() => handleLogAction('delivery')}
-                    >
-                        Log Delivery
-                    </button>
-                    <button
-                        className="bg-red-500 text-black px-4 py-2 rounded mr-2"
-                        onClick={() => handleLogAction('order')}
-                    >
-                        Log Order
-                    </button>
-                    <button
-                        className="bg-red-500 text-black px-4 py-2 rounded mr-2"
-                        onClick={() => handleLogAction('out-for-delivery')}
-                    >
-                        Log Out for Delivery
-                    </button>
-                    <button
-                        className="bg-purple-500 text-black px-4 py-2 rounded"
-                        onClick={() => handleLogAction('delivered')}
-                    >
-                        Log Delivered
-                    </button>
-                </div>
-            )}
-            <div className="bg-black shadow-md rounded p-4">
-                <h2 className="text-xl font-semibold mb-2">Tracking History</h2>
-                <ul>
-                    {tracking.map((track) => (
-                        <li key={track._id} className="mb-2">
-                            <span className="font-bold">{track.action}</span> by {track.user} at{' '}
-                            {new Date(track.timestamp).toLocaleString()}
-                        </li>
+        <div className='newww'>
+        <div className="tracking-page">
+            <h1 className="page-title">Tracking Information</h1>
+            <div className="content">
+                <div className="button-column">
+                    {userRole === 'Admin' && actions.map((action, index) => (
+                        <button
+                            key={action}
+                            className={`action-button ${
+                                index === currentActionIndex
+                                    ? 'active-button'
+                                    : index < currentActionIndex
+                                    ? 'completed-button'
+                                    : 'disabled-button'
+                            }`}
+                            onClick={() => handleLogAction(action, index)}
+                            disabled={index !== currentActionIndex || index < currentActionIndex}
+                        >
+                            {action.charAt(0).toUpperCase() + action.slice(1)}
+                        </button>
                     ))}
-                </ul>
+
+                    {userRole === 'User' && actions.map((action, index) => (
+                        <div
+                            key={action}
+                            className={`action-box ${
+                                completedActions[id] > index ? 'completed-box' : 'pending-box'
+                            }`}
+                        >
+                            <span>{action.charAt(0).toUpperCase() + action.slice(1)}</span>
+                        </div>
+                    ))}
+                </div>
+                <div className="tracking-history">
+                    <h2 className="history-title">Tracking History</h2>
+                    <ul>
+                        {sortedTracking.map((track) => (
+                            <li key={track._id}>
+                                <span className="action-name">{track.action}</span> by <b>{track.user}</b> at{' '}
+                                <time>{new Date(track.timestamp).toLocaleString()}</time>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
+        </div>
         </div>
     );
 };

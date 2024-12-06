@@ -5,9 +5,10 @@ const {
     updateItem,
     deleteItem,
     getTracking,
-    logPreparation,
-    logDelivery,
-    logOrder,
+    Received,
+    Accepted,
+   
+    Prepared,
     logOutForDelivery,
     logDelivered,
 } = require('../controllers/tracking');
@@ -47,9 +48,9 @@ router.delete('/items/:id', authenticateUser, deleteItem);
 router.get('/items/:id/tracking', authenticateUser, getTracking);
 
 // Routes for specific tracking actions
-router.post('/items/:id/preparation', authenticateUser, logPreparation);
-router.post('/items/:id/delivery', authenticateUser, logDelivery);
-router.post('/items/:id/order', authenticateUser, logOrder);
+router.post('/items/:id/received', authenticateUser, Received);
+router.post('/items/:id/accepted', authenticateUser, Accepted);
+router.post('/items/:id/prepared', authenticateUser, Prepared);
 router.post('/items/:id/out-for-delivery', authenticateUser, logOutForDelivery);
 router.post('/items/:id/delivered', authenticateUser, logDelivered);
 

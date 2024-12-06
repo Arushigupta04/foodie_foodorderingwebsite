@@ -50,6 +50,7 @@ function AllCategories1() {
   }, []);
 
   return (
+    <div className="gradient-background">
     <div className="container1">
       <h1 className="heading1">Explore Delicious Food Items</h1>
 
@@ -119,6 +120,7 @@ function AllCategories1() {
     }}
   />
 )}
+    </div>
     </div>
   );
 }

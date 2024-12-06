@@ -1,0 +1,144 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Gradient background specific to this page */
+.gradient-background {
+    background: linear-gradient(to bottom, #ffcc80, #ffe0b2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Order Container Styles */
+.order-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Adjusted for footer height */
+}
+
+.order-card {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.order-card:hover {
+    transform: scale(1.02);
+}
+
+.order-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #007bff;
+}
+
+.no-orders {
+    text-align: center;
+    color: #666;
+}
+
+.order-table {
+    width: 100%;
+    max-width: 1000px; /* Increased width */
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+    margin-bottom: 50px;
+    transition: all 0.3s; /* Smooth transition */
+    animation: fadeIn 0.5s; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.order-table th,
+.order-table td {
+    border: 1px solid black; /* Changed border color to black */
+    padding: 12px;
+    text-align: left;
+}
+
+.order-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.even-row {
+    background-color: #f2f2f2;
+}
+
+.odd-row {
+    background-color: #ffffff;
+}
+
+.track-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffea00dc;
+    color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.5s, transform 0.3s;
+}
+
+.track-button:hover {
+    background-color: #0056b3;
+    color: white;
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+.loading-container,
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #666;
+}
+
+/* Styles for the mail table */
+.mail-table {
+    width: 100%;
+    max-width: 1200px; /* Increased width for the mail table */
+    border-collapse: collapse;
+    margin: 20px auto; /* Center the table */
+    transition: all 0.3s; /* Smooth transition */
+    animation: fadeIn 0.5s; /* Fade-in animation */
+}
+
+.mail-table th,
+.mail-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+}
+
+.mail-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Footer styles */
+footer {
+    background-color: #fff; /* Footer background color */
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,6 +1,5 @@
 
 
-
 // module.exports = { checkout, paymentVerification, getAllUsersWithPayments };
 const Payment = require("../models/paymentModel.js");
 const crypto = require("crypto");

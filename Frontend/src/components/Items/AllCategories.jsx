@@ -59,50 +59,52 @@ const AllCategories = () => {
   }
 
   return (
-    <div className="containerI">
-      <h2 className="titleI">All Categories</h2>
-      {categories.length === 0 ? (
-        <p className="no-categoriesI">No categories available.</p>
-      ) : (
-        <div className="gridI">
-          {categories.map((category) => (
-            <div key={category._id} className="cardI">
-              <img
-                src={category.category_icon}
-                alt={category.category_title}
-                className="card-imageI"
-              />
-              <div className="card-contentI">
-                <h3 className="card-titleI">{category.category_title}</h3>
-                <p className="card-descriptionI">{category.category_description}</p>
-                <div className="card-actionsI">
-                  <button
-                    onClick={() => handleUpdateClick(category)}
-                    className="buttonI update-buttonI"
-                  >
-                    Update
-                  </button>
-                  <button
-                    onClick={() => deleteCategory(category._id)}
-                    className="buttonI delete-buttonI"
-                  >
-                    Delete
-                  </button>
+    <div className="gradient-background">
+      <div className="containerI">
+        <h2 className="titleI">All Categories</h2>
+        {categories.length === 0 ? (
+          <p className="no-categoriesI">No categories available.</p>
+        ) : (
+          <div className="gridI">
+            {categories.map((category) => (
+              <div key={category._id} className="cardI">
+                <img
+                  src={category.category_icon}
+                  alt={category.category_title}
+                  className="card-imageI"
+                />
+                <div className="card-contentI">
+                  <h3 className="card-titleI">{category.category_title}</h3>
+                  <p className="card-descriptionI">{category.category_description}</p>
+                  <div className="card-actionsI">
+                    <button
+                      onClick={() => handleUpdateClick(category)}
+                      className="buttonI update-buttonI"
+                    >
+                      Update
+                    </button>
+                    <button
+                      onClick={() => deleteCategory(category._id)}
+                      className="buttonI delete-buttonI"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {/* Show UpdatePopup if a category is selected */}
-      {selectedCategory && (
-        <UpdatePopup
-          category={selectedCategory}
-          onClose={() => setSelectedCategory(null)}
-          onUpdate={updateCategory}
-        />
-      )}
+        {/* Show UpdatePopup if a category is selected */}
+        {selectedCategory && (
+          <UpdatePopup
+            category={selectedCategory}
+            onClose={() => setSelectedCategory(null)}
+            onUpdate={updateCategory}
+          />
+        )}
+      </div>
     </div>
   );
 };

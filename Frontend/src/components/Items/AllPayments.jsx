@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './AllPayments.css'; // Make sure to import the CSS file
 
 const AllPayments = () => {
   const [orders, setOrders] = useState([]);
@@ -54,28 +56,51 @@ const AllPayments = () => {
   }
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Payments from Last 7 Days</h1>
-      {orders.length === 0 ? (
-        <p className="text-center text-gray-500">No payments found for the last 7 days.</p>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {orders.map((order) => (
-            <div
-              key={order._id}
-              className="border rounded-lg p-4 shadow hover:shadow-lg transition"
-            >
-              {/* Divide amount by 100 if it's in cents */}
-              <h2 className="text-xl font-semibold mb-2">
-                Amount: {order.amount ?order.amount : "N/A"}
-              </h2>
-              <h2 className="text-xl font-semibold mb-2">Date: {new Date(order.date).toLocaleDateString()}</h2>
-              <p className="text-gray-700">User ID: {order.user?._id || "Not Available"}</p>
-              <p className="text-gray-700">Email: {order.user?.email || "Not Available"}</p>
-            </div>
-          ))}
+    <div className="gradient-background">
+      <div className="flex justify-center items-center min-h-screen p-8 bg-gray-50">
+        <div className="w-full max-w-6xl p-6 shadow-md rounded-md">
+          <h1 className="text-6xl font-bold  mb-8 text-center text-blue-600">
+            Recent Payments
+          </h1>
+          {orders.length === 0 ? (
+            <p className="text-center text-gray-500">No payments found for the last 7 days.</p>
+          ) : (
+            <table className="min-w-full border-collapse border border-black">
+              <thead>
+                <tr className="bg-blue-600 text-white">
+                  <th className="border border-black px-4 py-2">S.No</th>
+                  <th className="border border-black px-4 py-2">Amount</th>
+                  <th className="border border-black px-4 py-2">Date</th>
+                  <th className="border border-black px-4 py-2">User ID</th>
+                  <th className="border border-black px-4 py-2">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order, index) => (
+                  <tr
+                    key={order._id}
+                    className={index % 2 === 0 ? "bg-gray-100" : "bg-white hover:bg-gray-200"}
+                  >
+                    <td className="border border-black px-4 py-2 text-center">{index + 1}</td>
+                    <td className="border border-black px-4 py-2 text-right">
+                      {order.amount ? `${order.amount} Rs` : "N/A"}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {new Date(order.date).toLocaleDateString()}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-center">
+                      {order.user?._id || "Not Available"}
+                    </td>
+                    <td className="border border-black px-4 py-2 text-left">
+                      {order.user?.email || "Not Available"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

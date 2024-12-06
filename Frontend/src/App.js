@@ -127,11 +127,20 @@ function App() {
   <Route path="/profile" element={<UserProfile />} />
   <Route path="/cart" element={<ShoppingCart />} />
   <Route path="/about-us" element={<><AboutUs /><Footer /></>} />
-  <Route path="/tracking/:id" element={<><Tracking/><Footer /></>} />
+  {/* <Route path="/tracking/:id" element={<><Tracking/><Footer /></>} /> */}
 
 
 
   {/* Admin Protected Routes */}
+  <Route 
+              path="/tracking/:id"
+              element={
+                <ProtectedRoute>
+                  <Tracking />
+                  <Footer />
+                </ProtectedRoute>
+              }
+            />
   <Route 
     path="/admin" 
     element={
