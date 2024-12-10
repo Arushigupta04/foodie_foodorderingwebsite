@@ -72,7 +72,7 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <div className="right">
+          <div className="righttt">
             <h1>India's Largest</h1>
             <h2>Dhakad Meals Brand</h2>
             <p>Irresistible meals in</p>
@@ -80,7 +80,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="divv3">
+      <div className="divvv3">
         <h1>Order Now</h1>
       </div>
       <div className="div3">
@@ -157,8 +157,8 @@ function HomePage() {
       </div>
       <div className="temp"></div>
       <div className="divv5">
-        <div className="sub1">
-          <div className="sub">
+        <div className="sub11">
+          <div className="subb">
             <h1>
               When in<br />
               doubt, <br />

@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import "./AllCategories.css";
 import UpdatePopup from "./UpdatePopup";
-
+import AdminPanel from "../Admin/AdminPanel";
 const AllCategories = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,7 +11,9 @@ const AllCategories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/add-new/categories");
+        const response = await fetch(
+          "http://localhost:5000/api/add-new/categories"
+        );
         if (!response.ok) throw new Error("Failed to fetch categories");
         const data = await response.json();
         setCategories(data);
@@ -29,11 +30,16 @@ const AllCategories = () => {
   // Delete a category by ID
   const deleteCategory = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/add-new/categories/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/add-new/categories/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!response.ok) throw new Error("Failed to delete category");
-      setCategories((prevCategories) => prevCategories.filter((category) => category._id !== id));
+      setCategories((prevCategories) =>
+        prevCategories.filter((category) => category._id !== id)
+      );
     } catch (error) {
       console.error("Error deleting category:", error);
     }
@@ -60,6 +66,9 @@ const AllCategories = () => {
 
   return (
     <div className="gradient-background">
+      <div style={{ flex: "0 0 auto", backgroundColor: "#343a40" }}>
+        <AdminPanel />
+      </div>
       <div className="containerI">
         <h2 className="titleI">All Categories</h2>
         {categories.length === 0 ? (
@@ -75,7 +84,9 @@ const AllCategories = () => {
                 />
                 <div className="card-contentI">
                   <h3 className="card-titleI">{category.category_title}</h3>
-                  <p className="card-descriptionI">{category.category_description}</p>
+                  <p className="card-descriptionI">
+                    {category.category_description}
+                  </p>
                   <div className="card-actionsI">
                     <button
                       onClick={() => handleUpdateClick(category)}

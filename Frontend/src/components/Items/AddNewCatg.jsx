@@ -27,6 +27,7 @@ const AddCategoryForm = ({ onAddCategory }) => {
 
   return (
     <>
+    <div className='woww'>
       <form onSubmit={handleSubmit} className="form-container add-category">
         <div className="form-group">
           <label>Category Title:</label>
@@ -58,6 +59,7 @@ const AddCategoryForm = ({ onAddCategory }) => {
         <button type="submit" className="btn-submit">Add Category</button>
       </form>
       <ToastContainer />
+      </div>
     </>
   );
 };

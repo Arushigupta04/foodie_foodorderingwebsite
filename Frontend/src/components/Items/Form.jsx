@@ -67,6 +67,7 @@ const MyComponent = () => {
   };
 
   return (
+    <div className='beauti'>
     <div className="container">
       {isAdmin ? (
         <>
@@ -85,6 +86,8 @@ const MyComponent = () => {
           <p>Accessible only by Admins.</p>
         </div>
       )}
+      
+    </div>
     </div>
   );
 };

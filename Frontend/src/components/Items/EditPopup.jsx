@@ -1,37 +1,50 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./EditPopup.css"; // CSS for the popup
+import "./EditPopup.css";
 
 function EditPopup({ item, onCancel, onSave }) {
   const [formData, setFormData] = useState({ ...item });
-  const [errors, setErrors] = useState({}); // To store validation errors
-
-  // Ref for the popup container
+  const [errors, setErrors] = useState({});
   const popupRef = useRef(null);
 
-  // Handle form input changes with validation
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Update formData
     setFormData({ ...formData, [name]: value });
 
-    // Validate specific fields
     if (name === "item_price") {
       if (!/^\d*\.?\d*$/.test(value)) {
         setErrors({ ...errors, item_price: "Price must be a valid number." });
+      } else if (Number(value) < 1 || Number(value) > 1000) {
+        setErrors({
+          ...errors,
+          item_price: "Price must be between 1 and 1000.",
+        });
       } else {
         const updatedErrors = { ...errors };
         delete updatedErrors.item_price;
         setErrors(updatedErrors);
       }
     }
+
+    if (name === "item_offer") {
+      if (!/^\d*\.?\d*$/.test(value)) {
+        setErrors({ ...errors, item_offer: "Offer must be a valid number." });
+      } else if (Number(value) < 1 || Number(value) > 100) {
+        setErrors({
+          ...errors,
+          item_offer: "Offer must be between 1 and 100.",
+        });
+      } else {
+        const updatedErrors = { ...errors };
+        delete updatedErrors.item_offer;
+        setErrors(updatedErrors);
+      }
+    }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check for validation errors before submission
     if (Object.keys(errors).length > 0) {
       alert("Please fix the validation errors before submitting.");
       return;
@@ -50,24 +63,20 @@ function EditPopup({ item, onCancel, onSave }) {
       );
       if (!response.ok) throw new Error("Failed to update item.");
       const updatedItem = await response.json();
-      onSave(updatedItem.item); // Pass updated item back to the parent
+      onSave(updatedItem.item);
     } catch (err) {
       alert(err.message);
     }
   };
 
-  // Close the popup if clicked outside
   const handleOutsideClick = (e) => {
     if (popupRef.current && !popupRef.current.contains(e.target)) {
-      onCancel(); // Close the popup
+      onCancel();
     }
   };
 
-  // Add event listener when the component is mounted
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
-
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
@@ -109,6 +118,9 @@ function EditPopup({ item, onCancel, onSave }) {
             onChange={handleInputChange}
             placeholder="Item Offer"
           />
+          {errors.item_offer && (
+            <p className="error-message">{errors.item_offer}</p>
+          )}
           <input
             type="text"
             name="item_src"

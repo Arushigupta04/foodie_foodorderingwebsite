@@ -1,4 +1,4 @@
-.gradient-background {
+.gradientt-background {
   background: linear-gradient(to left, #fff3e0, #ffcc80); 
   /* Light gradient background */
 }
@@ -13,7 +13,7 @@
   font-weight: 800;
   margin-bottom: 30px;
   text-align: center;
-  color: #1d4ed8;
+  color:#007bff;
 }
 
 .loadingI,

@@ -9,12 +9,14 @@ body {
   .container {
     display: flex;
     justify-content: center;
+    
     gap: 30px; /* Increased space between forms */
     flex-wrap: wrap;
     margin: 30px auto;
   }
   
   .form-container {
+    
     max-width: 500px;
     padding: 20px;
     border: 1px solid #f0a500; /* Yellowish-orange border */
@@ -22,7 +24,11 @@ body {
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+ .beauti{
   
+  background: linear-gradient(to left, #fff3e0, #ffcc80); 
+  padding: 50px 0;
+ }
   /* Form Group */
   .form-group {
     margin-bottom: 20px;
@@ -118,11 +124,11 @@ body {
   }
   
   .add-category .btn-submit {
-    background-color: #4CAF50; /* Green button */
+    background-color: #ff9800; /* Green button */
   }
   
   .add-category .btn-submit:hover {
-    background-color: #388E3C; /* Darker green on hover */
+    background-color: #ff9800; /* Darker green on hover */
   }
   
   /* AddItemForm Specific Styles */

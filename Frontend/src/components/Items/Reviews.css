@@ -1,119 +1,118 @@
-/* Container for the entire reviews section */
 .gradient-background {
   background: linear-gradient(to left, #fff3e0, #ffcc80); 
+  min-height: 100vh;
+  /* display: flex;
+    background: linear-gradient(to left, #fff3e0, #ffcc80); 
   /* Light gradient background */
   display: flex;
+  
 }
-.containerR {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px;
 
-  }
-  
-  /* Title styling */
-  .titleR {
-    font-size: 2.5rem;
-    font-weight: 800;
+.containerR {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px;
+}
+
+.titleR {
+  text-align: center;
+  font-size: 3rem;
+  color: #007bff;
+  /* font-weight:1000px; */
+ font-style: bolder;
     margin-bottom: 30px;
-    text-align: center;
-    color: #1d4ed8;
-  }
+    /* margin-top: -41px;
+    margin-top: -130px;
+    position:absolute; */
+   margin-top: -40px;
+   
+    /* display: flex;
+    margin-left: 30%; */
+}
+.titleR {
+  font-size: 3rem;
+  font-weight: 750;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #007bff;
+}
+.titleR {
+  font-size: 3rem;
+  font-weight: 750;
+  margin-bottom: 30px;
+  margin-top: 0; /* Remove extra top margin */
+  text-align: center;
+  color: #007bff;
+  position: relative; /* Optional for fine-tuning */
+  top: 0px; /* Ensures it stays at the top */
+}
+
+
+.gridR {
+  display: grid;
   
-  /* Error message styling */
-  .errorR {
-    font-size: 1.4rem;
-    text-align: center;
-    color: #6b7280;
-    margin-top: 20px;
-  }
-  
-  /* Grid layout for the cards */
-  .gridR {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* Space between cards */
-    justify-content: center;
-  }
-  
-  /* Card styling */
-  .cardR {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .cardR:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Quotation icon styling */
-  .iconWrapperR {
-    font-size: 60px;
-    color: #ffa500; /* Orange color */
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  /* Stars (rating) styling */
-  .ratingR {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-  }
-  
-  .starR {
-    font-size: 20px;
-    color: #ccc; /* Grey for unfilled stars */
-    margin: 0 2px;
-  }
-  
-  .filledR {
-    color: #ffd700; /* Gold for filled stars */
-  }
-  
-  /* Review text styling */
-  .textR {
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 0 15px; /* Padding for better text spacing */
-  }
-  
-  /* Reviewer name/email styling */
-  .authorR {
-    font-size: 14px;
-    color: #555;
-    font-style: italic;
-    text-align: right;
-    margin-top: auto;
-    padding-top: 10px;
-    border-top: 1px solid #e5e7eb;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 1024px) {
-    .gridR {
-      gap: 20px; /* Adjust spacing between cards for medium screens */
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .gridR {
-      grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
-    }
-  
-    .cardR {
-      width: 90%; /* Make cards take up most of the screen width */
-      margin: 0 auto; /* Center cards */
-    }
-  }
-  
+  grid-template-columns: repeat(auto-fit, minmax(380px, 3fr));
+  gap: 25px;
+}
+.gridR {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px; /* Space between cards */
+  justify-content: center;
+}
+
+.cardR {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.cardR {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.iconWrapperR {
+  font-size: 2rem;
+  color: #007aff;
+  margin-bottom: 10px;
+}
+
+.ratingR .starR {
+  color: #ccc;
+}
+
+.ratingR .starR.filledR {
+  color: #f39c12;
+}
+
+.textR {
+  font-size: 1rem;
+  color: #555;
+  margin: 10px 0;
+}
+
+.authorR {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.errorR, .loadingR {
+  text-align: center;
+  color: red;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+.cardR {
+  width: 100%; /* Make cards take up most of the screen width */
+  margin: 0 auto; /* Center cards */
+}
+

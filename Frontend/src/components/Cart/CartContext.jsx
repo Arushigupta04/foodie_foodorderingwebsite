@@ -116,7 +116,7 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = () => {
     setCartItems([]);
-    toast.success('Cart cleared.');
+   // toast.success('Cart cleared.');
     setMaxLimitNotified({}); // Reset all notification flags
   };
 

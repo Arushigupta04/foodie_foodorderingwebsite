@@ -1,0 +1,70 @@
+body {
+    font-family: 'Arial', sans-serif;
+    /* background: linear-gradient(to right, #ffcc80, #ffe0b2); */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .containerAI {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    
+    margin: 30px auto;
+  }
+  
+  .form-containerAI {
+    max-width: 500px;
+    padding: 20px;
+    border: 1px solid #f0a500;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .nestt{
+    background: linear-gradient(to right, #ffcc80, #ffe0b2); 
+  }
+  .form-groupAI {
+    margin-bottom: 20px;
+  }
+  
+  .form-labelAI {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #f57c00;
+  }
+  
+  .form-inputAI,
+  .form-selectAI,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f0a500;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .error-messageAI {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .btn-submitAI {
+    background-color: #ff9800;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .btn-submitAI:hover{
+   transform: scale(1.05);
+  }

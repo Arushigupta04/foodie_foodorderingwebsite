@@ -92,7 +92,7 @@
     font-size: 15px;
 }
 
-.div2 .right {
+.div2 .righttt {
     padding: 30px;
     padding-left: 40px;
     display: flex;
@@ -100,20 +100,21 @@
     justify-content: center;
 }
 
-.div2 .right h1 {
+.div2 .righttt h1 {
     font-size: 60px;
     color: #FFA700;
     margin: 0px;
+    margin-left: -100px;
 }
 
-.div2 .right h2 {
+.div2 .righttt h2 {
     font-size: 35px;
     padding: 10px 0px;
     margin-left: -140px; /* Moves the heading 1px to the left */
 }
 
 
-.div2 .right p {
+.div2 .righttt p {
     font-size: 20px;
 }
 
@@ -144,13 +145,15 @@
     transform: scale(1.04);
 }
 
-.divv3 {
+.divvv3 {
     font-size: 30px;
     margin: auto;
+    margin-bottom: -80px;
     text-align: center;
-    padding: 10px;
+    padding: 40px;
     color: rgb(4, 4, 44);
 }
+
 
 @media (min-width:769px) {
     .video {
@@ -254,7 +257,7 @@
 
 }
 
-.divv5 .sub1 {
+.divv5 .sub11 {
     padding: 10px;
 
     display: flex;
@@ -262,23 +265,25 @@
 
 }
 
-.divv5 .sub1 .sub {
+.divv5 .sub11 .subb {
     width: 80%;
     margin: auto;
     height: 80%;
 
 }
 
-.divv5 .sub1 h1 {
+.divv5 .sub11 h1 {
     padding: 10px;
     font-size: 43px;
+    margin-top: 30px;
 }
 
-.divv5 .sub1 h1 span {
+.divv5 .sub11 h1 span {
     color: #FFA700;
+    margin-top: 30px;
 }
 
-.divv5 .sub1 p {
+.divv5 .sub11 p {
     padding: 10px;
     font-size: 20px;
     letter-spacing: 1px;
@@ -315,7 +320,7 @@
 }
 
 @media (min-width:770px) {
-    .divv5 .sub1 {
+    .divv5 .sub11 {
         width: 50%;
     }
 }

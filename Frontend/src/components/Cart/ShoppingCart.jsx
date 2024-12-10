@@ -120,7 +120,7 @@ const ShoppingCart = () => {
               <div className="card mb-4">
                 <div className="card-body">
                   <p><strong>Expected shipping delivery</strong></p>
-                  <p className="mb-0">Within 30 Minutes to 1 Hour</p>
+                  <p className="mb-0">Within 30 Minutes </p>
                 </div>
               </div>
             )}

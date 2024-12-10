@@ -36,7 +36,8 @@ body {
 .order-title {
     font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 50px;
+    margin-top: 20px;;
+    margin-bottom: 30px;
     text-align: center;
     color: #007bff;
 }
@@ -47,11 +48,12 @@ body {
 }
 
 .order-table {
-    width: 100%;
-    max-width: 1000px; /* Increased width */
+    width: 200%;
+    max-width: 1150px; /* Increased width */
     border-collapse: collapse;
     margin: 0 auto; /* Center the table */
     margin-bottom: 50px;
+    margin-left: -100px;;
     transition: all 0.3s; /* Smooth transition */
     animation: fadeIn 0.5s; /* Fade-in animation */
 }
@@ -92,6 +94,7 @@ body {
     color: black;
     border-radius: 5px;
     text-decoration: none;
+    text-align: center;
     transition: background-color 0.5s, transform 0.3s;
 }
 

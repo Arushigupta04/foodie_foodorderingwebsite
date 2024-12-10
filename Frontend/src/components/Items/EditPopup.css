@@ -66,3 +66,24 @@
     margin-bottom: 10px;
   }
   
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  .popup-message {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: white;
+    font-size: 0.875rem;
+    margin-top: 5px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
