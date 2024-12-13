@@ -1,6 +1,6 @@
 
 
-// module.exports = { checkout, paymentVerification, getAllUsersWithPayments };
+
 const Payment = require("../models/paymentModel.js");
 const crypto = require("crypto");
 // const User = require("../models/user.js");
@@ -15,7 +15,7 @@ const instance = new Razorpay({
 // Checkout function: Create an order
 const checkout = async (req, res) => {
   const options = {
-    amount: Number(req.body.amount ), // Razorpay expects the amount in paise (smallest currency unit)
+    amount: Number(req.body.amount ), 
     currency: "INR",
   };
   
@@ -151,13 +151,13 @@ const getLast7DaysPayments = async (req, res) => {
       { $sort: { _id: 1 } },
     ]);
 
-    // Create an array of the last 7 days
+    
     const allDates = [];
     for (let i =6; i >=0; i--) {
       allDates.push(moment().subtract(i, "days").utc().format("YYYY-MM-DD"));
     }
 
-    // Map payments to dates, filling missing dates with 0
+  
     const paymentMap = payments.reduce((acc, payment) => {
       acc[payment._id] = payment.totalAmount;
       return acc;

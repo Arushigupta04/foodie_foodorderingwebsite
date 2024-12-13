@@ -506,7 +506,7 @@ function UserProfile() {
       name="fullName"
       placeholder="Full Name"
       value={updatedUserInfo.fullName}
-      onChange={handleInputChange}
+      onChange={handleInputChange} 
     />
     {errors.fullName && <p className="text-white">{errors.fullName}</p>}
     <input

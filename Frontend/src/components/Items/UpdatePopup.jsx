@@ -8,6 +8,11 @@ const UpdatePopup = ({ category, onClose, onUpdate }) => {
     category_icon: category.category_icon,
   });
 
+  const [errors, setErrors] = useState({
+    category_title: "",
+    category_description: "",
+  });
+
   useEffect(() => {
     // Initialize form data when category prop changes
     setFormData({
@@ -23,9 +28,38 @@ const UpdatePopup = ({ category, onClose, onUpdate }) => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Validate fields before submitting
+  const validateForm = () => {
+    let titleError = "";
+    let descriptionError = "";
+
+    // Validate category title (max 30 characters)
+    if (formData.category_title.length > 30) {
+      titleError = "Category name cannot exceed 30 characters.";
+    }
+
+    // Validate category description (max 80 characters)
+    if (formData.category_description.length > 150) {
+      descriptionError = "Category description cannot exceed 80 characters.";
+    }
+
+    setErrors({
+      category_title: titleError,
+      category_description: descriptionError,
+    });
+
+    // Return false if there are errors
+    return !titleError && !descriptionError;
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Prevent submission if validation fails
+    }
+
     try {
       const response = await fetch(
         `http://localhost:5000/api/add-new/categories/${category._id}`,
@@ -60,6 +94,9 @@ const UpdatePopup = ({ category, onClose, onUpdate }) => {
               onChange={handleChange}
               required
             />
+            {errors.category_title && (
+              <div className="error-message">{errors.category_title}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="category_description">Category Description</label>
@@ -69,6 +106,9 @@ const UpdatePopup = ({ category, onClose, onUpdate }) => {
               onChange={handleChange}
               required
             />
+            {errors.category_description && (
+              <div className="error-message">{errors.category_description}</div>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="category_icon">Category Image URL</label>

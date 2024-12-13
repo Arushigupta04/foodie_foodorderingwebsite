@@ -58,7 +58,8 @@
 
 .header h1 {
     background-color: rgba(255, 255, 255, 0.5); 
-    color: rgb(198, 99, 32);
+    /* color: rgb(198, 99, 32); */
+    color: #f98314;
     padding: 10px 20px;
     font-size: 54px;
     text-align: center;
@@ -98,7 +99,8 @@
 .feature h3 {
     font-size: 20px;
     margin: 10px 0;
-    color: rgb(198, 99, 32);
+    /* color: rgb(198, 99, 32); */
+    color: #f98314;
 }
 
 .feature p {

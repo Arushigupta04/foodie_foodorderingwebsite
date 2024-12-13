@@ -66,6 +66,10 @@ function Footer() {
       setErrorMessage('Rating and review are required.');
       return;
     }
+    if (review.length > 100) {
+      setErrorMessage('Review text cannot be greater than 100 characters.');
+      return;
+    }
 
     const reviewData = {
       email: reviewEmail,

@@ -40,7 +40,12 @@
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 5px;
+  }.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
   }
+  
   
   .form-actions {
     margin-top: 20px;
@@ -64,4 +69,8 @@
     background-color: #f44336;
     color: white;
   }
-  
+  .error-message {
+    color:white;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }

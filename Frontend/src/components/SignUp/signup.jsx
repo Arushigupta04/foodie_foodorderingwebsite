@@ -61,6 +61,7 @@ const SignUp = () => {
 
   const assessPasswordStrength = (password) => {
     if (password.length < 6) return "Weak";
+   
     if (/^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(password)) {
       if (/^(?=.*[A-Za-z]{4,})(?=.*\d{2,}).{6,}$/.test(password)) {
         if (/^(?=.*[A-Za-z]{4,})(?=.*\d{2,})(?=.*[!@#$%^&]).{6,}$/.test(password)) {
@@ -102,7 +103,9 @@ const SignUp = () => {
     if (password.includes(' ')) {
       errors.password = 'Password should not contain spaces.';
     }
-
+    if (password.length > 15) {
+      errors.password = "Password cannot exceed 15 characters.";
+    }
     if (!validateName(fullName)) errors.fullName = 'First 3 letters should be alphabets and Full name should not exceed 30 characters.';
     if (!validateEmail(email)) errors.email = 'Invalid email format.';
     if (!validateMobile(mobile)) errors.mobile = 'Mobile number must be exactly 10 digits starting from 6-9.';

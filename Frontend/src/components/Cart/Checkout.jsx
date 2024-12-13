@@ -12,7 +12,25 @@ const Checkout = ({ totalAmount, handlePayment }) => {
   const [message, setMessage] = useState('');
   const [cookies] = useCookies(['token']);
 
-  const handleAddressChange = (e) => setAddress(e.target.value);
+  const handleAddressChange = (e) => {
+    const newAddress = e.target.value;
+  
+    // Regular expression to check the constraints:
+    // - Max length of 30
+    // - Cannot be all integers
+    // - Cannot be all special characters
+    const addressRegex = /^(?!^\d+$)(?!^[!@#$%^&*(),.?":{}|<>~`_+=/\\\-]+$).{1,30}$/;
+  
+    if (addressRegex.test(newAddress)) {
+      setAddress(newAddress);
+      setMessage(''); // Clear error message if valid
+    } else {
+      setMessage(
+        'Address must be a maximum of 30 characters and cannot be entirely numbers or special characters.'
+      );
+    }
+  };
+  
 
   const fetchUserData = async () => {
     try {

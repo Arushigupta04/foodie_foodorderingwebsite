@@ -531,7 +531,7 @@ function AdminDashboard() {
   className="m-0 font-weight-bold text-primary"
   style={{ textAlign: "center" }}
 >
-  Items on Platform
+  Categories on Platform
 </h6>
 
     </div>

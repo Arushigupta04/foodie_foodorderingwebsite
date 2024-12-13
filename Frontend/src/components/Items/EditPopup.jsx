@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./EditPopup.css";
-
+import { toast } from "react-toastify";
 function EditPopup({ item, onCancel, onSave }) {
   const [formData, setFormData] = useState({ ...item });
   const [errors, setErrors] = useState({});
@@ -11,6 +11,18 @@ function EditPopup({ item, onCancel, onSave }) {
 
     setFormData({ ...formData, [name]: value });
 
+    // Validate item_title (max 50 characters)
+   // Validate item_title (max 50 characters)
+if (name === "item_title" && value.length > 30) {
+  setErrors({ ...errors, item_title: "Title cannot exceed 30 characters." });
+} else {
+  const updatedErrors = { ...errors };
+  delete updatedErrors.item_title;
+  setErrors(updatedErrors);
+}
+
+
+    // Validate item_price (1 to 1000)
     if (name === "item_price") {
       if (!/^\d*\.?\d*$/.test(value)) {
         setErrors({ ...errors, item_price: "Price must be a valid number." });
@@ -26,6 +38,7 @@ function EditPopup({ item, onCancel, onSave }) {
       }
     }
 
+    // Validate item_offer (1 to 100)
     if (name === "item_offer") {
       if (!/^\d*\.?\d*$/.test(value)) {
         setErrors({ ...errors, item_offer: "Offer must be a valid number." });
@@ -46,7 +59,7 @@ function EditPopup({ item, onCancel, onSave }) {
     e.preventDefault();
 
     if (Object.keys(errors).length > 0) {
-      alert("Please fix the validation errors before submitting.");
+      toast.error("Please fix the validation errors before submitting.");
       return;
     }
 
@@ -93,7 +106,10 @@ function EditPopup({ item, onCancel, onSave }) {
             value={formData.item_title}
             onChange={handleInputChange}
             placeholder="Item Title"
+            
           />
+          {errors.item_title && <p className="error-message">{errors.item_title}</p>}
+
           <input
             type="text"
             name="item_type"
@@ -101,6 +117,7 @@ function EditPopup({ item, onCancel, onSave }) {
             onChange={handleInputChange}
             placeholder="Item Type"
           />
+
           <input
             type="text"
             name="item_price"
@@ -108,9 +125,8 @@ function EditPopup({ item, onCancel, onSave }) {
             onChange={handleInputChange}
             placeholder="Item Price"
           />
-          {errors.item_price && (
-            <p className="error-message">{errors.item_price}</p>
-          )}
+          {errors.item_price && <p className="error-message">{errors.item_price}</p>}
+
           <input
             type="text"
             name="item_offer"
@@ -118,9 +134,8 @@ function EditPopup({ item, onCancel, onSave }) {
             onChange={handleInputChange}
             placeholder="Item Offer"
           />
-          {errors.item_offer && (
-            <p className="error-message">{errors.item_offer}</p>
-          )}
+          {errors.item_offer && <p className="error-message">{errors.item_offer}</p>}
+
           <input
             type="text"
             name="item_src"
