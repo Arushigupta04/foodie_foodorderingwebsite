@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './TrackingPage.css';
 
-const API_URL = 'http://localhost:5000'; // Replace with your backend URL
+const API_URL = 'https://foodie-foodorderingwebsite.onrender.com'; // Replace with your backend URL
 
 const TrackingPage = () => {
     const { id } = useParams(); // Order ID from URL parameters
