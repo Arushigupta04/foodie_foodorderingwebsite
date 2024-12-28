@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
  import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 
-const serverURL = "http://localhost:5000";
+const serverURL = "https://foodie-foodorderingwebsite.onrender.com";
 
 const SignUp = () => {
   const [fullName, setFullName] = useState('');
