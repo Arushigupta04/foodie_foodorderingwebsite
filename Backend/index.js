@@ -196,24 +196,27 @@ app.get("/test", (req, res) => {
 });
 
 // MongoDB connection with retry logic
+const mongoose = require('mongoose');
 const connectWithRetry = () => {
   console.log('Attempting to connect to MongoDB...');
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 100000, // Timeout after 30 seconds
-    socketTimeoutMS: 60000,          // Set socket timeout to 60 seconds
-    useCreateIndex: true,            // Ensures indexes are created
-    useFindAndModify: false,         // Avoid deprecated method warnings
+    serverSelectionTimeoutMS: 30000, // Timeout after 10 seconds
+    socketTimeoutMS: 60000, // Set socket timeout to 60 seconds
+    useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(() => {
-    console.log("MongoDB Connected Successfully.");
+    console.log('MongoDB Connected Successfully');
   })
   .catch((err) => {
-    console.error('Error Connecting MongoDB:', err);
-    setTimeout(connectWithRetry, 5000);  // Retry connection after 5 seconds
+    console.error('Error connecting to MongoDB:', err);
+    setTimeout(connectWithRetry, 5000); // Retry connection after 5 seconds
   });
 };
+
+connectWithRetry();
 
 
 // Start the server
