@@ -7,7 +7,7 @@ import "./style.css";
 // Import the image at the top
 import cartBanner from '../../assets/category-images/cart.png';
 
-const serverURL = "http://localhost:5000";
+const serverURL = "https://foodie-foodorderingwebsite.onrender.com";
 
 const ShoppingCart = () => {
   const { cartItems, clearCart, removeItemFromCart, increaseItemQuantity, decreaseItemQuantity } = useContext(CartContext);
