@@ -148,6 +148,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(CheckforAuthCookie("token"));
 app.use(express.json());
+const app = express();
+app.use(express.json());
+
+// Setting the timeout value to 5 minutes (300,000 ms) for slow requests
+app.use((req, res, next) => {
+  res.setTimeout(300000, () => {
+    console.error("Request timed out");
+    res.status(408).send("Request Timeout");
+  });
+  next();
+});
+
 
 // Enable CORS for frontend URL
 const allowedOrigins = ['http://localhost:3000', 'https://foodie-foodorderingwebsite-1.onrender.com'];
