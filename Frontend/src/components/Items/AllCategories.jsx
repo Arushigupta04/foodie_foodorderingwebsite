@@ -12,7 +12,7 @@ const AllCategories = () => {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/add-new/categories"
+          "https://foodie-foodorderingwebsite.onrender.com/api/add-new/categories"
         );
         if (!response.ok) throw new Error("Failed to fetch categories");
         const data = await response.json();
@@ -31,7 +31,7 @@ const AllCategories = () => {
   const deleteCategory = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/add-new/categories/${id}`,
+        `https://foodie-foodorderingwebsite.onrender.com/api/add-new/categories/${id}`,
         {
           method: "DELETE",
         }
