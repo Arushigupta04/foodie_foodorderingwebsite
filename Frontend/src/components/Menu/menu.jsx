@@ -6,7 +6,7 @@ import "./menu.css"
 import cartIcon from '../../assets/shopping-cart-icon.svg';
 
 // const serverURL = "http://192.168.54.63:5000"
-const serverURL = "http://localhost:5000"
+const serverURL = "https://foodie-foodorderingwebsite.onrender.com";
 
 const MenuPage = () => {
   const [itemCategories, setItemCategories] = useState([]);
