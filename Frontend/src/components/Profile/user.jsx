@@ -301,7 +301,7 @@ import { CartContext } from '../Cart/CartContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const serverURL = "http://localhost:5000";
+const serverURL = "https://foodie-foodorderingwebsite.onrender.com";
 
 function UserProfile() {
   const [user, setUser] = useState({
