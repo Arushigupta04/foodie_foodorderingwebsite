@@ -65,7 +65,7 @@ if (name === "item_title" && value.length > 30) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/add-new/items/${item._id}`,
+        `https://foodie-foodorderingwebsite.onrender.com0/api/add-new/items/${item._id}`,
         {
           method: "PUT",
           headers: {
