@@ -204,8 +204,7 @@ const connectWithRetry = () => {
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 30000, // Timeout after 10 seconds
     socketTimeoutMS: 60000, // Set socket timeout to 60 seconds
-    useCreateIndex: true,
-    useFindAndModify: false,
+   
   })
   .then(() => {
     console.log('MongoDB Connected Successfully');
