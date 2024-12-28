@@ -15,7 +15,8 @@ const MenuPage = () => {
     const fetchItemCategories = async () => {
       try {
         const response = await fetch(`${serverURL}/api/add-new/food-items`);
-        setItemCategories(response.data);
+        const data = await response.json();
+setItemCategories(data);
       } catch (error) {
         console.error('Error fetching item categories:', error);
       }
