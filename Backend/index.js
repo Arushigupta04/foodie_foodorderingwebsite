@@ -5,7 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const Review = require('./models/reviewModel');
 const app = express();
-const PORT = 5000;
+// const PORT = 5000;
 const HOST = "192.168.54.63";
 const { ConnectMongoDB } = require("./connection");
 const { CheckforAuthCookie } = require("./middlewares/auth");
@@ -16,7 +16,8 @@ const reviewRoutes = require("./routes/reviewRoutes"); // Import review routes
 const trackingg = require("./routes/tracking"); // Import review routes
 
 // Start the server
-app.listen(PORT, () => console.log(`Server Running on PORT:${PORT}`));
+const Port=process.env.PORT||4000;
+app.listen(Port, () => console.log(`Server Running on PORT:${PORT}`));
 
 // Connect to MongoDB
 ConnectMongoDB("mongodb://127.0.0.1:27017/foodie")
