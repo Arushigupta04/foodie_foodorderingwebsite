@@ -190,7 +190,7 @@ const connectWithRetry = () => {
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // Timeout after 30 seconds
+    serverSelectionTimeoutMS: 100000, // Timeout after 30 seconds
     socketTimeoutMS: 60000,          // Set socket timeout to 60 seconds
     useCreateIndex: true,            // Ensures indexes are created
     useFindAndModify: false,         // Avoid deprecated method warnings
