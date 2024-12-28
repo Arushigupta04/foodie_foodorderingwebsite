@@ -29,7 +29,7 @@ ChartJS.register(
   PointElement
 );
 
-const serverURL = "http://localhost:5000";
+const serverURL = "https://foodie-foodorderingwebsite.onrender.com";
 
 function AdminDashboard() {
     const [users, setUsers] = useState([]);
