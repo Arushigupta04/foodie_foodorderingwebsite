@@ -189,7 +189,7 @@ const connectWithRetry = () => {
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000, // Timeout after 5 seconds
+    serverSelectionTimeoutMS: 20000, // Timeout after 5 seconds
     socketTimeoutMS: 45000         // Set socket timeout to 45 seconds
   })
   .then(() => console.log("MongoDB Connected Successfully."))
