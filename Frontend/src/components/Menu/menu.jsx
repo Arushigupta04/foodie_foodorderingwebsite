@@ -14,7 +14,7 @@ const MenuPage = () => {
   useEffect(() => {
     const fetchItemCategories = async () => {
       try {
-        const response = await axios.get(`${serverURL}/api/add-new/food-items`);
+        const response = await fetch(`${serverURL}/api/add-new/food-items`);
         setItemCategories(response.data);
       } catch (error) {
         console.error('Error fetching item categories:', error);
