@@ -11,7 +11,7 @@ const AllrectOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/orders");
+        const response = await axios.get("https://foodie-foodorderingwebsite.onrender.com/api/orders");
         const allOrders = response.data;
 
         const sevenDaysAgo = new Date();
@@ -87,7 +87,7 @@ const AllrectOrder = () => {
                       <td>{order.payment_method}</td>
                       <td>
                         <a 
-                          href={`http://localhost:3000/tracking/${order._id}`} 
+                          href={`https://foodie-foodorderingwebsite.onrender.com/tracking/${order._id}`} 
                           className="track-button" 
                           aria-label={`Track order for ${order.name}`}>
                           Track Order
